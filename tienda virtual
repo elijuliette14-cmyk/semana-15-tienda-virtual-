@@ -1,0 +1,60 @@
+# PROGRAMA PARA REGISTRAR Y GESTIONAR PRODUCTOS DE UNA TIENDA USANDO DICCIONARIO Y LISTAS
+def mostrar_menu():
+    print("--- SISTEMA DE GESTIÓN DE TIENDA ---")
+    print("1. AGREGAR PRODUCTO")
+    print("2. VER INVENTARIO COMPLETO")
+    print("3. BUSCAR PRODUCTO")
+    print("4. ELIMINAR PRODUCTO")
+    print("5. SALIR")
+
+
+def gestionar_tienda():
+    # DICCIONARIO PARA ALMACENAR EL PRODUCTO COMO CLAVE Y SU INFORMACIÓN (PRECIO Y CANTIDAD) COMO VALOR
+    inventario = {}
+    inventario["ACEITE"] = {"precio": 3.0, "cantidad": 30}
+    inventario["AZUCAR"] = {"precio": 2.0, "cantidad": 50}
+    inventario["ARROZ"] = {"precio": 1.5, "cantidad": 100}
+
+    while True:
+        mostrar_menu()
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            nombre_producto = input("Ingrese el nombre del producto: ")
+            precio = float(input("Ingrese el precio del producto: "))
+            cantidad = int(input("Ingrese la cantidad del producto: "))
+            inventario[nombre_producto] = {"precio": precio, "cantidad": cantidad}
+            print("Producto agregado exitosamente.")
+
+        elif opcion == "2":
+            print("--- INVENTARIO COMPLETO ---")
+            for producto, info in inventario.items():
+                print(f"Producto: {producto}, Precio: {info['precio']}, Cantidad: {info['cantidad']}")
+
+        elif opcion == "3":
+            nombre_producto = input("Ingrese el nombre del producto a buscar: ")
+            if nombre_producto in inventario:
+                info = inventario[nombre_producto]
+                print(f"Producto encontrado: {nombre_producto}, Precio: {info['precio']}, Cantidad: {info['cantidad']}")
+            else:
+                print("Producto no encontrado.")
+
+        elif opcion == "4":
+            nombre_producto = input("Ingrese el nombre del producto a eliminar: ")
+            if nombre_producto in inventario:
+                del inventario[nombre_producto]
+                print("Producto eliminado exitosamente.")
+            else:
+                print("Producto no encontrado.")
+
+        elif opcion == "5":
+            print("Saliendo del sistema...")
+            break
+
+        else:
+            print("Opción inválida. Por favor, seleccione una opción válida.")
+
+
+# EJECUTAR EL PROGRAMA
+if __name__ == "__main__":
+    gestionar_tienda()
